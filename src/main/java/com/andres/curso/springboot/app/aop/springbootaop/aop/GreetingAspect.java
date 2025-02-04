@@ -21,10 +21,7 @@ public class GreetingAspect {
     this.logger = LoggerFactory.getLogger(this.getClass());
   }
 
-  @Pointcut("execution(* com.andres.curso.springboot.app.aop.springbootaop.services.GreetingService.*(..))")
-  private void greetingLoggerPointCut() { }
-
-  @Before("greetingLoggerPointCut()")
+  @Before("GreetingServicePointcuts.greetingLoggerPointCut()")
   public void loggerBefore(JoinPoint joinPoint) {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
@@ -32,7 +29,7 @@ public class GreetingAspect {
     logger.info("Antes: " + method + " con los argumentos " + args);
   }
 
-  @After("greetingLoggerPointCut()")
+  @After("GreetingServicePointcuts.greetingLoggerPointCut()")
   public void loggerAfter(JoinPoint joinPoint) {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
@@ -40,7 +37,7 @@ public class GreetingAspect {
     logger.info("Despues: " + method + " con los argumentos " + args);
   }
 
-  @AfterReturning("greetingLoggerPointCut()")
+  @AfterReturning("GreetingServicePointcuts.greetingLoggerPointCut()")
   public void loggerAfterReturning(JoinPoint joinPoint) {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
@@ -48,7 +45,7 @@ public class GreetingAspect {
     logger.info("Despues de retornar: " + method + "con los argumentos " + args);
   }
 
-  @AfterThrowing("greetingLoggerPointCut()")
+  @AfterThrowing("GreetingServicePointcuts.greetingLoggerPointCut()")
   public void loggerAfterThrowing(JoinPoint joinPoint) {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
@@ -56,7 +53,7 @@ public class GreetingAspect {
     logger.info("Despues de lanzar la excepción: " + method + "con los argumentos " + args);
   }
 
-  @Around("greetingLoggerPointCut()")
+  @Around("GreetingServicePointcuts.greetingLoggerPointCut()")
   public Object loggerAround(ProceedingJoinPoint joinPoint) throws Throwable {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
