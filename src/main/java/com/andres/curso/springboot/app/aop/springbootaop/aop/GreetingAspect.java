@@ -5,10 +5,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+@Order(2)
 @Aspect
 @Component
 public class GreetingAspect {
@@ -24,7 +26,7 @@ public class GreetingAspect {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
 
-    logger.info("Antes: " + method + "con los argumentos " + args);
+    logger.info("Antes: " + method + " con los argumentos " + args);
   }
 
   @After("execution(* com.andres.curso.springboot.app.aop.springbootaop.services.GreetingService.*(..))")
@@ -32,7 +34,7 @@ public class GreetingAspect {
     String method = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
 
-    logger.info("Despues: " + method + "con los argumentos " + args);
+    logger.info("Despues: " + method + " con los argumentos " + args);
   }
 
   @AfterReturning("execution(* com.andres.curso.springboot.app.aop.springbootaop.services.GreetingService.*(..))")
